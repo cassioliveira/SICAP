@@ -3,7 +3,6 @@ package br.org.sicap.modelo;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -74,15 +73,22 @@ public class Aluno implements Serializable {
     @Column(name = "data_nascimento")
     private Date dataNascimento;
 
-    @Embedded
-    private AlunoFiliacao filiacao;
-    
-    @Embedded
-    private AlunoAcademico academico;
-    
-    public Aluno(){
-        this.filiacao = new AlunoFiliacao();
-        this.academico = new AlunoAcademico();
-    }
+    @Column(name = "pai", length = 100)
+    private String pai;
+
+    @Column(name = "formacao_pai", length = 100)
+    private String formacaoPai;
+
+    @Column(name = "mae", length = 100)
+    private String mae;
+
+    @Column(name = "formacao_mae", length = 100)
+    private String formacaoMae;
+
+    @Column(name = "classificacao", length = 100)
+    private String classificacao;
+
+    @Column(name = "formacao", length = 150)
+    private String formacao;
 
 }

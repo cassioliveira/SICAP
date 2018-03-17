@@ -1,10 +1,12 @@
 package br.org.sicap.controladores;
 
+import br.org.sicap.enumerations.Formacao;
 import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Aluno;
 import br.org.sicap.servicos.AlunoServico;
 import br.org.sicap.util.jsf.FacesUtil;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -40,6 +42,9 @@ public class AlunoController implements Serializable {
     private Aluno alunoSelecionado;
 
     @Getter
+    private List<Formacao> formacao;
+
+    @Getter
     private List<Aluno> alunos;
 
     /**
@@ -50,6 +55,7 @@ public class AlunoController implements Serializable {
 
     @PostConstruct
     public void init() {
+        this.formacao = Arrays.asList(Formacao.values());
         this.alunos = alunoServico.findAll();
 
     }

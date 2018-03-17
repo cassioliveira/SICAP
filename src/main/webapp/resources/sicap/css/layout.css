@@ -7,18 +7,19 @@
     min-height: 50px;
     z-index: 999;
 
-    background-color: #1e94d2;
+    background-color: #004933;
+    /*background-color: #1e94d2;*/
 }
 
 .aw-topbar > img {
-    margin-top: 15px;
+    margin-top: 3px;
     margin-left: 20px;
 }
 
 /* SIDEBAR */
 .aw-sidebar {
     position: fixed;
-    top: 52px;
+    top: 58px;
     bottom: 0;
     left: 0;
     width: 225px;
@@ -56,7 +57,7 @@
 /* CONTENT */
 .aw-content {
     padding: 0 15px;
-    margin-top: 50px;
+    margin-top: 65px;
     transition: margin-left 0.5s;
 }
 

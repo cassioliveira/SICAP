@@ -45,6 +45,7 @@
                                 <f:selectItem noSelectionOption="true"/>
                                 <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
                                 <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
+                                <f:selectItem itemLabel="Não informado" itemValue="naoinformado"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel for="nascimento" value="Nascimento: " />
@@ -73,26 +74,32 @@
                     <p:tab title="Filiação">
                         <h:panelGrid columns="2" style="margin-left: 10px;margin-bottom: 5px">
                             <p:outputLabel for="pai" value="Pai: " />
-                            <p:inputText id="pai" size="27" value="#{alunoController.aluno.filiacao.pai}"/>
-                            
+                            <p:inputText id="pai" size="32" value="#{alunoController.aluno.pai}"/>
+
                             <p:outputLabel for="formacao-pai" value="Formação: " />
-                            <p:inputText id="formacao-pai" size="27" value="#{alunoController.aluno.filiacao.formacaoPai}"/>
+                            <p:selectOneMenu id="formacao-pai" style="width: 205px" value="#{alunoController.aluno.formacaoPai}" >
+                                <f:selectItem noSelectionOption="true"/>
+                                <f:selectItems id="formacaop" value="#{alunoController.formacao}" var="formacao" itemValue="#{formacao}" itemLabel="#{formacao.descricao}"/>
+                            </p:selectOneMenu>
 
                             <p:outputLabel for="mae" value="Mãe: " />
-                            <p:inputText id="mae" size="27" value="#{alunoController.aluno.filiacao.mae}"/>
-                            
+                            <p:inputText id="mae" size="32" value="#{alunoController.aluno.mae}"/>
+
                             <p:outputLabel for="formacao-mae" value="Formação: " />
-                            <p:inputText id="formacao-mae" size="27" value="#{alunoController.aluno.filiacao.formacaoMae}"/>
+                            <p:selectOneMenu id="formacao-mae" style="width: 205px" value="#{alunoController.aluno.formacaoMae}" >
+                                <f:selectItem noSelectionOption="true"/>
+                                <f:selectItems id="formacaom" value="#{alunoController.formacao}" var="formacao" itemValue="#{formacao}" itemLabel="#{formacao.descricao}"/>
+                            </p:selectOneMenu>
                         </h:panelGrid>
                     </p:tab>
 
                     <p:tab title="Acadêmico">
                         <h:panelGrid columns="2" style="margin-left: 10px;margin-bottom: 5px">
                             <p:outputLabel for="formacao" value="Formação: " />
-                            <p:inputText id="formacao" size="27" value="#{alunoController.aluno.academico.formacao}"/>
+                            <p:inputText id="formacao" size="27" value="#{alunoController.aluno.formacao}"/>
 
                             <p:outputLabel for="classificacao" value="Classif. Geral: " />
-                            <p:inputText id="classificacao" size="27" value="#{alunoController.aluno.academico.classificacao}"/>
+                            <p:inputText id="classificacao" size="27" value="#{alunoController.aluno.classificacao}"/>
                         </h:panelGrid>
                     </p:tab>
                 </p:tabView>
