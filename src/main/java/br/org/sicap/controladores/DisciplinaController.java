@@ -2,8 +2,8 @@ package br.org.sicap.controladores;
 
 import br.org.sicap.enumerations.Formacao;
 import br.org.sicap.excecoes.ClinicumLabException;
-import br.org.sicap.modelo.Aluno;
-import br.org.sicap.servicos.AlunoServico;
+import br.org.sicap.modelo.Disciplina;
+import br.org.sicap.servicos.DisciplinaServico;
 import br.org.sicap.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -22,68 +22,68 @@ import lombok.Setter;
  * @author Cássio Oliveira <cassio@cassioliveira.com.br>
  */
 @Model
-public class AlunoController implements Serializable {
+public class DisciplinaController implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Getter
     @Setter
     @Inject
-    private Aluno aluno;
+    private Disciplina disciplina;
 
     @Getter
     @Setter
     @Inject
-    private AlunoServico alunoServico;
+    private DisciplinaServico disciplinaServico;
 
     @Getter
     @Setter
     @Inject
-    private Aluno alunoSelecionado;
+    private Disciplina disciplinaSelecionado;
 
     @Getter
     private List<Formacao> formacao;
 
     @Getter
-    private List<Aluno> alunos;
+    private List<Disciplina> disciplinas;
 
     /**
      * Construtor da classe
      */
-    public AlunoController() {
+    public DisciplinaController() {
     }
 
     @PostConstruct
     public void init() {
         this.formacao = Arrays.asList(Formacao.values());
-        this.alunos = alunoServico.findAll();
+        this.disciplinas = disciplinaServico.findAll();
     }
 
     /**
      * Método responsável por iniciar uma transação, instanciar um objeto do
-     * tipo Aluno e salvar.
+     * tipo Disciplina e salvar.
      *
      */
     public void salvar() {
-        alunoServico.salvar(aluno);
+        disciplinaServico.salvar(disciplina);
         if (getEditando()) {
-            FacesUtil.mensagemSucesso("Cadastro de '" + aluno.getNome() + "' atualizado com sucesso!");
+            FacesUtil.mensagemSucesso("Cadastro de '" + disciplina.getNome()+ "' atualizado com sucesso!");
         } else {
             FacesUtil.mensagemSucesso("Cadastro efetuado com sucesso!");
         }
-        FacesUtil.redirecionaPara("listar-alunos.xhtml");
-        aluno = new Aluno();
+        FacesUtil.redirecionaPara("listar-disciplinas.xhtml");
+        disciplina = new Disciplina();
     }
 
     /**
-     * Método responsável por excluir um objeto do tipo Aluno e exibir ao final
-     * do processo uma mensagem informativa.
+     * Método responsável por excluir um objeto do tipo Disciplina e exibir ao
+     * final do processo uma mensagem informativa.
      *
      * @throws ClinicumLabException
      */
     public void excluir() throws ClinicumLabException {
-        this.alunoServico.deletar(alunoSelecionado);
-        this.alunos = alunoServico.findAll();
+        this.disciplinaServico.deletar(disciplinaSelecionado);
+        this.disciplinas = disciplinaServico.findAll();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }
 
@@ -94,7 +94,7 @@ public class AlunoController implements Serializable {
      * @return
      */
     public boolean getEditando() {
-        return this.aluno.getId() != null;
+        return this.disciplina.getId() != null;
     }
 
 }

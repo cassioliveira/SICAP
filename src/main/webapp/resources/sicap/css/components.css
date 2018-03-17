@@ -54,6 +54,16 @@
     color: #373737;
 }
 
+/*Titulo dos Fieldsets*/
+.ui-fieldset .ui-fieldset-legend{
+    color: #004933 !important;
+}
+
+/*Título dos p:tab da tabView*/
+.ui-tabs .ui-tabs-nav li a{
+    color: #004933 !important;
+}
+
 .welcome-message-home{
     margin-top: 5%;
     color: darkcyan;
