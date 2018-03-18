@@ -34,28 +34,28 @@
                         </p:outputPanel>
                     </f:facet>
 
-                    <p:column headerText="Código" style="text-align: center" width="1.2%" filterMatchMode="exact" 
+                    <p:column headerText="Matrícula" style="text-align: center" width="1.5%" filterMatchMode="exact" 
                               filterStyle="width: 20px; display:none">
                         <h:outputText value="#{professor.matricula}"/>
                     </p:column>
 
-                    <p:column headerText="Nome" width="40" filterMatchMode="contains" filterStyle="width: 300px; display:none">
+                    <p:column headerText="Nome" width="30" filterMatchMode="contains" filterStyle="width: 300px; display:none">
                         <h:outputText value="#{professor.nome}"/>
                     </p:column>
 
-                    <p:column headerText="Telefone" style="text-align: center" width="20" filterMatchMode="contains" 
+                    <p:column headerText="Telefone" style="text-align: center" width="10" filterMatchMode="contains" 
                               filterStyle="width: 80px; display:none">
                         <h:outputText value="#{professor.telefone}"/>
                     </p:column>
 
-                    <p:column headerText="Data de nasc." style="text-align: center" width="10" filterMatchMode="exact" 
+                    <p:column headerText="Data de nascimento" style="text-align: center" width="25" filterMatchMode="exact" 
                               filterStyle="width: 20px; display:none">
                         <h:outputText value="#{professor.dataNascimento}">
                             <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </p:column>
 
-                    <p:column id="acoes" headerText="Ações" style="text-align: center" width="25">
+                    <p:column id="acoes" headerText="Ações" style="text-align: center" width="20">
                         <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px"
                                   outcome="/professor/cadastro-professor">
                             <f:param name="professor" value="#{professor.id}"/>

@@ -4,6 +4,7 @@ import br.org.sicap.repository.Professores;
 import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Professor;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ public class ProfessorServico implements Serializable {
     public void salvar(Professor professor) {
         if (professor.getId() == null) {
             professor.setCadastro(new Date());
+            professor.setMatricula(matricula(professor));
         }
         this.professores.save(professor);
     }
@@ -44,4 +46,19 @@ public class ProfessorServico implements Serializable {
         return professores.findAll();
     }
 
+    /**
+     * Responsável por conter a lógica de geração do número da matrícula do professor
+     * @param professor
+     * @return 
+     */
+    public String matricula(Professor professor){
+        String matricula;
+        LocalDate agora = LocalDate.now();
+        int ano = agora.getYear();
+        String cpf = professor.getCpf().replaceAll("\\.", "").replaceAll("\\-", "");
+        matricula = ano + cpf;
+        
+        return matricula;
+    }
+    
 }

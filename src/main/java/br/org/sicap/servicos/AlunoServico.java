@@ -4,6 +4,7 @@ import br.org.sicap.repository.Alunos;
 import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Aluno;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -27,6 +28,7 @@ public class AlunoServico implements Serializable {
     public void salvar(Aluno aluno) {
         if (aluno.getId() == null) {
             aluno.setCadastro(new Date());
+            aluno.setMatricula(matricula(aluno));
         }
         this.alunos.save(aluno);
     }
@@ -42,6 +44,21 @@ public class AlunoServico implements Serializable {
 
     public List<Aluno> findAll() {
         return alunos.findAll();
+    }
+    
+    /**
+     * Responsável por conter a lógica de geração do número da matrícula do aluno
+     * @param aluno
+     * @return 
+     */
+    public String matricula(Aluno aluno){
+        String matricula;
+        LocalDate agora = LocalDate.now();
+        int ano = agora.getYear();
+        String cpf = aluno.getCpf().replaceAll("\\.", "").replaceAll("\\-", "");
+        matricula = ano + cpf;
+        
+        return matricula;
     }
 
 }
