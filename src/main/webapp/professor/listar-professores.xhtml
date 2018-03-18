@@ -8,64 +8,64 @@
                 template="/WEB-INF/templates/Layout.xhtml">
 
     <ui:define name="content">
-        <p:fieldset legend="Alunos cadastrados">
-            <h:form id="formPesquisaAluno">
+        <p:fieldset legend="Professors cadastrados">
+            <h:form id="formPesquisaProfessor">
 
                 <p:growl id="mensagens" autoUpdate="true" class="sobreporMensagens"/>
 
                 <p:toolbar >
                     <f:facet name="right">
                         <p:button value="Novo cadastro" id="botaoTelaCadastro"  icon="ui-icon ui-icon-pencil" 
-                                  outcome="/aluno/cadastro-aluno"/>
+                                  outcome="/professor/cadastro-professor"/>
                     </f:facet>
                 </p:toolbar>
 
-                <p:dataTable id="datatablePesquisaAluno" var="aluno" value="#{alunoController.alunos}"
+                <p:dataTable id="datatablePesquisaProfessor" var="professor" value="#{professorController.professores}"
                              paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" reflow="true" 
                              paginatorPosition="bottom" emptyMessage="Nenhum registro encontrado" paginator="true" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                              {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
-                             scrollable="true" scrollRows="10" scrollHeight="290" widgetVar="pesquisaAluno">
+                             scrollable="true" scrollRows="10" scrollHeight="290" widgetVar="pesquisaProfessor">
 
                     <f:facet name="header">
-                        <p:outputPanel id="panelFiltroAluno">
-                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaAluno').filter()" style="width:300px" 
+                        <p:outputPanel id="panelFiltroProfessor">
+                            <p:inputText id="globalFilter" onkeyup="PF('pesquisaProfessor').filter()" style="width:300px" 
                                          placeholder="Pesquisar"/>
                         </p:outputPanel>
                     </f:facet>
 
                     <p:column headerText="Código" style="text-align: center" width="1.2%" filterMatchMode="exact" 
                               filterStyle="width: 20px; display:none">
-                        <h:outputText value="#{aluno.matricula}"/>
+                        <h:outputText value="#{professor.matricula}"/>
                     </p:column>
 
                     <p:column headerText="Nome" width="40" filterMatchMode="contains" filterStyle="width: 300px; display:none">
-                        <h:outputText value="#{aluno.nome}"/>
+                        <h:outputText value="#{professor.nome}"/>
                     </p:column>
 
                     <p:column headerText="Telefone" style="text-align: center" width="20" filterMatchMode="contains" 
                               filterStyle="width: 80px; display:none">
-                        <h:outputText value="#{aluno.telefone}"/>
+                        <h:outputText value="#{professor.telefone}"/>
                     </p:column>
 
                     <p:column headerText="Data de nasc." style="text-align: center" width="10" filterMatchMode="exact" 
                               filterStyle="width: 20px; display:none">
-                        <h:outputText value="#{aluno.dataNascimento}">
+                        <h:outputText value="#{professor.dataNascimento}">
                             <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </p:column>
 
                     <p:column id="acoes" headerText="Ações" style="text-align: center" width="25">
                         <p:button id="botaoEditar" title="Editar" icon="ui-icon ui-icon-pencil" style="font-size: 10px"
-                                  outcome="/aluno/cadastro-aluno">
-                            <f:param name="aluno" value="#{aluno.id}"/>
+                                  outcome="/professor/cadastro-professor">
+                            <f:param name="professor" value="#{professor.id}"/>
                             <p:tooltip for="botaoEditar" value="Edita dados da linha selecionada"/>
                         </p:button>
 
                         <p:commandButton id="deleteButton" title="Remover" icon="ui-icon ui-icon-trash" style="font-size: 10px" 
-                                         action="#{alunoController.excluir}" process="@this" update="datatablePesquisaAluno">
-                            <f:setPropertyActionListener target="#{alunoController.alunoSelecionado}" value="#{aluno}"/>
-                            <p:tooltip for="deleteButton" value="Excluir aluno"/>
+                                         action="#{professorController.excluir}" process="@this" update="datatablePesquisaProfessor">
+                            <f:setPropertyActionListener target="#{professorController.professorSelecionado}" value="#{professor}"/>
+                            <p:tooltip for="deleteButton" value="Excluir professor"/>
                             <p:confirm icon="ui-icon-alert" header="Exclusão de cadastro" message="Deseja realmente excluir o cadastro?"/>
                         </p:commandButton>
 

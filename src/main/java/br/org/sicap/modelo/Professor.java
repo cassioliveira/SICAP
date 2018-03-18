@@ -23,8 +23,8 @@ import org.hibernate.validator.constraints.br.CPF;
  */
 @Data
 @Entity
-@Table(name = "aluno")
-public class Aluno implements Serializable {
+@Table(name = "professor")
+public class Professor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -75,20 +75,5 @@ public class Aluno implements Serializable {
 
     @Column(name = "pai", length = 100)
     private String pai;
-
-    @Column(name = "formacao_pai", length = 100)
-    private String formacaoPai;
-
-    @Column(name = "mae", length = 100)
-    private String mae;
-
-    @Column(name = "formacao_mae", length = 100)
-    private String formacaoMae;
-
-    @Column(name = "classificacao", length = 100)
-    private String classificacao;
-
-    @Column(name = "formacao", length = 150)
-    private String formacao;
 
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/Layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="professor" value="#{professorController.professor}"/>
+    </f:metadata>
+
+    <ui:define name="content"> 
+
+        <p:fieldset legend="#{professorController.editando ? 'Editar cadastro do Professor': 'Novo Professor'}">
+            <h:form id="formProfessor">
+                <p:growl autoUpdate="true"/>
+
+                <h:panelGrid columns="2" style="margin-left: 10px;margin-bottom: 5px">
+                    <p:outputLabel for="cadastro" value="Cadastro em: " rendered="#{professorController.editando}"/>
+                    <p:inputText id="cadastro" value="#{professorController.professor.cadastro}" rendered="#{professorController.editando}"
+                                 readonly="true" size="27">
+                        <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="matricula" value="Matrícula: " rendered="#{professorController.editando}"/>
+                    <p:inputText id="matricula" value="#{professorController.professor.matricula}" rendered="#{professorController.editando}"
+                                 readonly="true" style="font-weight: bold; color: black; font-size: 15px" size="23"/>
+
+                    <p:outputLabel for="nome" value="Nome: " />
+                    <p:inputText id="nome" size="40" value="#{professorController.professor.nome}"/>
+
+                    <p:outputLabel for="nome-social" value="Nome Social: " />
+                    <p:inputText id="nome-social" size="40" value="#{professorController.professor.nomeSocial}"/>
+
+                    <p:outputLabel for="cpf" value="CPF: " />
+                    <p:inputMask id="cpf" mask="999.999.999-99" size="27" value="#{professorController.professor.cpf}"/>
+
+                    <p:outputLabel for="rg" value="RG: " />
+                    <p:inputText id="rg" size="27" value="#{professorController.professor.rg}"/>
+
+                    <p:outputLabel for="sexo" value="Sexo: " />
+                    <p:selectOneMenu id="sexo" style="width: 173px" value="#{professorController.professor.sexo}">
+                        <f:selectItem noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
+                        <f:selectItem itemLabel="Feminino" itemValue="feminino"/>
+                        <f:selectItem itemLabel="Não informado" itemValue="naoinformado"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="nascimento" value="Nascimento: " />
+                    <p:calendar id="nascimento" navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+100" showOn="button" 
+                                maxlength="10" mask="true" size="21" locale="pt" value="#{professorController.professor.dataNascimento}">
+                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" locale="pt_BR" />           
+                    </p:calendar>
+
+                    <p:outputLabel for="email" value="E-mail: " />
+                    <p:inputText id="email" size="40" placeholder="usuario@dominio" value="#{professorController.professor.email}"/>
+
+                    <p:outputLabel for="telefone" value="Telefone: " />
+                    <p:inputText id="telefone" size="27" onkeyup="mascara(this, masktel)" value="#{professorController.professor.telefone}"
+                                 maxlength="15" placeholder="DDD + Número"/>
+
+                    <p:outputLabel for="celular" value="Celular: " />
+                    <p:inputText id="celular" size="27" onkeyup="mascara(this, masktel)" value="#{professorController.professor.celular}"
+                                 maxlength="15" placeholder="DDD + Número"/>
+                </h:panelGrid>
+
+            </h:form>    
+
+            <p:toolbar id="toolbarProfessor" style="margin-top: 10px;">
+                <f:facet name="left">
+                    <p:commandButton id="botaoSalvar" style="font-size: 13px;" value="Salvar"
+                                     icon="ui-icon ui-icon-disk" action="#{professorController.salvar}">
+                        <f:ajax execute="@form" render="@form"/>
+                    </p:commandButton>
+
+                    <p:button style="font-size: 13px;" value="Cancelar" id="botaoDeletar"
+                              outcome="/professor/listar-professores" icon="fa fa-times">
+                    </p:button>
+                </f:facet>
+            </p:toolbar>
+        </p:fieldset>
+        <p:blockUI block="formProfessor" trigger="botaoSalvar"/>
+    </ui:define>
+</ui:composition>     

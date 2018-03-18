@@ -21,12 +21,14 @@
                     <p:tab title="Dados Pessoais">
                         <h:panelGrid columns="2" style="margin-left: 10px;margin-bottom: 5px">
                             <p:outputLabel for="cadastro" value="Cadastro em: " rendered="#{alunoController.editando}"/>
-                            <p:outputLabel id="cadastro" value="#{alunoController.aluno.cadastro}" rendered="#{alunoController.editando}">
+                            <p:inputText id="cadastro" value="#{alunoController.aluno.cadastro}" rendered="#{alunoController.editando}"
+                                         readonly="true" size="27">
                                 <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm"/>
-                            </p:outputLabel>
+                            </p:inputText>
 
-                            <p:outputLabel for="codigo" value="Código: "/>
-                            <p:inputText id="codigo" size="13" placeholder="SEQ/AUTO" value="#{alunoController.aluno.codigo}"/>
+                            <p:outputLabel for="matricula" value="Matrícula: " rendered="#{alunoController.editando}"/>
+                            <p:inputText id="matricula" value="#{alunoController.aluno.matricula}" rendered="#{alunoController.editando}"
+                                         readonly="true" style="font-weight: bold; color: black; font-size: 15px" size="23"/>
 
                             <p:outputLabel for="nome" value="Nome: " />
                             <p:inputText id="nome" size="40" value="#{alunoController.aluno.nome}"/>
