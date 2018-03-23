@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -90,5 +91,27 @@ public class Aluno implements Serializable {
 
     @Column(name = "formacao", length = 150)
     private String formacao;
+
+    @Column(name = "rua", length = 150)
+    private String rua;
+
+    @Column(name = "uf")
+    private String uf;
+
+    @Column(name = "bairro", length = 70)
+    private String bairro;
+
+    @Size(max = 7, message = "Máximo de 7 dígitos")
+    @Column(name = "numero", length = 7)
+    private String numero;
+
+    @Column(name = "cidade", length = 100)
+    private String cidade;
+
+    @Column(name = "pais", length = 50)
+    private String pais;
+
+    @Column(name = "cep", length = 10)
+    private String cep;
 
 }

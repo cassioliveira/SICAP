@@ -35,21 +35,22 @@
                     </f:facet>
 
                     <p:column headerText="Código" style="text-align: center" width="1.2%" filterMatchMode="exact" 
-                              filterStyle="width: 20px; display:none">
+                              filterStyle="width: 20px; display:none" filterBy="#{disciplina.codigo}">
                         <h:outputText value="#{disciplina.codigo}"/>
                     </p:column>
 
-                    <p:column headerText="Nome" width="40" filterMatchMode="contains" filterStyle="width: 300px; display:none">
-                        <h:outputText value="#{disciplina.nome}"/>
+                    <p:column headerText="Nome" width="40" filterMatchMode="contains" filterStyle="width: 300px; display:none"
+                              filterBy="#{disciplina.nome}">
+                        <h:outputText value="#{disciplina.nome}" />
                     </p:column>
 
                     <p:column headerText="Creditos" style="text-align: center" width="15" filterMatchMode="contains" 
-                              filterStyle="width: 80px; display:none">
+                              filterStyle="width: 80px; display:none" filterBy="#{disciplina.creditos}">
                         <h:outputText value="#{disciplina.creditos}"/>
                     </p:column>
 
                     <p:column headerText="Carga-horária" style="text-align: center" width="20" filterMatchMode="exact" 
-                              filterStyle="width: 20px; display:none">
+                              filterStyle="width: 20px; display:none" filterBy="#{disciplina.cargaHoraria}">
                         <h:outputText value="#{disciplina.cargaHoraria}"/>
                     </p:column>
 

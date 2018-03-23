@@ -73,6 +73,31 @@
                         </h:panelGrid>
                     </p:tab>
 
+                    <p:tab title="Localização">
+                        <h:panelGrid columns="2" style="margin-left: 10px;margin-bottom: 5px">
+                            <p:outputLabel for="rua" value="Rua: " />
+                            <p:inputText id="rua" size="27" value="#{alunoController.aluno.rua}"/>
+
+                            <p:outputLabel for="numero" value="Nº: " />
+                            <p:inputText id="numero" size="27" value="#{alunoController.aluno.numero}"/>
+
+                            <p:outputLabel for="bairro" value="Bairro: " />
+                            <p:inputText id="bairro" size="27" value="#{alunoController.aluno.bairro}"/>
+                            
+                            <p:outputLabel for="cep" value="CEP: " />
+                            <p:inputMask id="cep" size="27" mask="99999-999" value="#{alunoController.aluno.cep}"/>
+
+                            <p:outputLabel for="pais" value="País: " />
+                            <p:inputText id="pais" size="27" value="#{alunoController.aluno.pais}"/>
+
+                            <p:outputLabel for="estado" value="Estado: " />
+                            <p:inputText id="estado" size="27" value="#{alunoController.aluno.uf}"/>
+
+                            <p:outputLabel for="cidade" value="Cidade: " />
+                            <p:inputText id="cidade" size="27" value="#{alunoController.aluno.cidade}"/>
+                        </h:panelGrid>
+                    </p:tab>
+
                     <p:tab title="Filiação">
                         <h:panelGrid columns="2" style="margin-left: 10px;margin-bottom: 5px">
                             <p:outputLabel for="pai" value="Pai: " />
@@ -98,10 +123,10 @@
                     <p:tab title="Acadêmico">
                         <h:panelGrid columns="2" style="margin-left: 10px;margin-bottom: 5px">
                             <p:outputLabel for="formacao" value="Formação: " />
-                            <p:inputText id="formacao" size="27" value="#{alunoController.aluno.formacao}"/>
+                            <p:inputText id="formacao" size="58" value="#{alunoController.aluno.formacao}"/>
 
                             <p:outputLabel for="classificacao" value="Classif. Geral: " />
-                            <p:inputText id="classificacao" size="27" value="#{alunoController.aluno.classificacao}"/>
+                            <p:inputText id="classificacao" size="9" value="#{alunoController.aluno.classificacao}"/>
                         </h:panelGrid>
                     </p:tab>
                 </p:tabView>
