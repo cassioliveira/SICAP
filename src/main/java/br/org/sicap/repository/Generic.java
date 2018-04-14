@@ -16,15 +16,9 @@ public abstract class Generic<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private transient EntityManager entityManager;
 
-    private Class<T> entity;
-
-    /**
-     *
-     */
-    public Generic() {
-    }
+    private final Class<T> entity;
 
     /**
      * Construtor da classe que captura a entidade que chamar esta classe.

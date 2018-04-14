@@ -22,7 +22,6 @@ import javax.persistence.EntityTransaction;
  * Repository (http://github.com/algaworks)
  */
 @Interceptor
-//@Transactional
 public class TransactionInterceptor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,6 +30,7 @@ public class TransactionInterceptor implements Serializable {
     transient EntityManager entityManager;
 
     public TransactionInterceptor() {
+        //Needed to Interceptor works!
     }
 
     /* The annotation @AroundInvoke sign this method for to be called automatically before the 

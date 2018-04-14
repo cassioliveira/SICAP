@@ -1,7 +1,6 @@
 package br.org.sicap.servicos;
 
 import br.org.sicap.repository.Disciplinas;
-import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Disciplina;
 import java.io.Serializable;
 import java.util.Date;
@@ -20,9 +19,6 @@ public class DisciplinaServico implements Serializable {
     @Inject
     private Disciplinas disciplinas;
 
-    public DisciplinaServico() {
-    }
-
     @Transactional
     public void salvar(Disciplina disciplina) {
         if (disciplina.getId() == null) {
@@ -32,7 +28,7 @@ public class DisciplinaServico implements Serializable {
     }
 
     @Transactional
-    public void deletar(Disciplina disciplina) throws ClinicumLabException {
+    public void deletar(Disciplina disciplina) {
         disciplinas.delete(findById(disciplina.getId()));
     }
 

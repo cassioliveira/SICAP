@@ -1,6 +1,6 @@
 package br.org.sicap.converter;
 
-import br.org.sicap.excecoes.ClinicumLabException;
+import br.org.sicap.excecoes.SICAPException;
 import br.org.sicap.modelo.Aluno;
 import br.org.sicap.servicos.AlunoServico;
 import br.org.sicap.util.cdi.CDIServiceLocator;
@@ -18,7 +18,7 @@ public class AlunoConverter implements Converter {
 
     private final AlunoServico alunoServico;
 
-    public AlunoConverter() throws ClinicumLabException {
+    public AlunoConverter() throws SICAPException {
         this.alunoServico = CDIServiceLocator.getBean(AlunoServico.class);
     }
 

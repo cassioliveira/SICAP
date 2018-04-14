@@ -1,7 +1,6 @@
 package br.org.sicap.controladores;
 
 import br.org.sicap.enumerations.Formacao;
-import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Aluno;
 import br.org.sicap.servicos.AlunoServico;
 import br.org.sicap.util.jsf.FacesUtil;
@@ -28,7 +27,6 @@ public class AlunoController implements Serializable {
 
     @Getter
     @Setter
-    @Inject
     private Aluno aluno;
 
     @Getter
@@ -38,7 +36,6 @@ public class AlunoController implements Serializable {
 
     @Getter
     @Setter
-    @Inject
     private Aluno alunoSelecionado;
 
     @Getter
@@ -47,10 +44,9 @@ public class AlunoController implements Serializable {
     @Getter
     private List<Aluno> alunos;
 
-    /**
-     * Construtor da classe
-     */
     public AlunoController() {
+        aluno = new Aluno();
+        alunoSelecionado = new Aluno();
     }
 
     @PostConstruct
@@ -79,9 +75,8 @@ public class AlunoController implements Serializable {
      * Método responsável por excluir um objeto do tipo Aluno e exibir ao final
      * do processo uma mensagem informativa.
      *
-     * @throws ClinicumLabException
      */
-    public void excluir() throws ClinicumLabException {
+    public void excluir() {
         this.alunoServico.deletar(alunoSelecionado);
         this.alunos = alunoServico.findAll();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");

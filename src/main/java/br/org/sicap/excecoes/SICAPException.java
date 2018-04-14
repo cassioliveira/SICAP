@@ -4,9 +4,9 @@ package br.org.sicap.excecoes;
  *
  * @author Cássio Oliveira <cassio@cassioliveira.com.br>
  */
-public class ClinicumLabException extends Exception {
+public class SICAPException extends Exception {
     
-    public ClinicumLabException(String message) {
+    public SICAPException(String message) {
         super(message);
     }
     

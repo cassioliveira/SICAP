@@ -1,7 +1,6 @@
 package br.org.sicap.controladores;
 
 import br.org.sicap.enumerations.Formacao;
-import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Disciplina;
 import br.org.sicap.servicos.DisciplinaServico;
 import br.org.sicap.util.jsf.FacesUtil;
@@ -28,7 +27,6 @@ public class DisciplinaController implements Serializable {
 
     @Getter
     @Setter
-    @Inject
     private Disciplina disciplina;
 
     @Getter
@@ -38,8 +36,7 @@ public class DisciplinaController implements Serializable {
 
     @Getter
     @Setter
-    @Inject
-    private Disciplina disciplinaSelecionado;
+    private Disciplina disciplinaSelecionada;
 
     @Getter
     private List<Formacao> formacao;
@@ -47,10 +44,9 @@ public class DisciplinaController implements Serializable {
     @Getter
     private List<Disciplina> disciplinas;
 
-    /**
-     * Construtor da classe
-     */
     public DisciplinaController() {
+        disciplina = new Disciplina();
+        disciplinaSelecionada = new Disciplina();
     }
 
     @PostConstruct
@@ -67,7 +63,7 @@ public class DisciplinaController implements Serializable {
     public void salvar() {
         disciplinaServico.salvar(disciplina);
         if (getEditando()) {
-            FacesUtil.mensagemSucesso("Cadastro de '" + disciplina.getNome()+ "' atualizado com sucesso!");
+            FacesUtil.mensagemSucesso("Cadastro de '" + disciplina.getNome() + "' atualizado com sucesso!");
         } else {
             FacesUtil.mensagemSucesso("Cadastro efetuado com sucesso!");
         }
@@ -79,10 +75,9 @@ public class DisciplinaController implements Serializable {
      * Método responsável por excluir um objeto do tipo Disciplina e exibir ao
      * final do processo uma mensagem informativa.
      *
-     * @throws ClinicumLabException
      */
-    public void excluir() throws ClinicumLabException {
-        this.disciplinaServico.deletar(disciplinaSelecionado);
+    public void excluir() {
+        this.disciplinaServico.deletar(disciplinaSelecionada);
         this.disciplinas = disciplinaServico.findAll();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
     }

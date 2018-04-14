@@ -1,6 +1,6 @@
 package br.org.sicap.converter;
 
-import br.org.sicap.excecoes.ClinicumLabException;
+import br.org.sicap.excecoes.SICAPException;
 import br.org.sicap.modelo.Disciplina;
 import br.org.sicap.servicos.DisciplinaServico;
 import br.org.sicap.util.cdi.CDIServiceLocator;
@@ -18,7 +18,7 @@ public class DisciplinaConverter implements Converter {
 
     private final DisciplinaServico disciplinaServico;
 
-    public DisciplinaConverter() throws ClinicumLabException {
+    public DisciplinaConverter() throws SICAPException {
         this.disciplinaServico = CDIServiceLocator.getBean(DisciplinaServico.class);
     }
 

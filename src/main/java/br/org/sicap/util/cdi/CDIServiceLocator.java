@@ -1,6 +1,6 @@
 package br.org.sicap.util.cdi;
 
-import br.org.sicap.excecoes.ClinicumLabException;
+import br.org.sicap.excecoes.SICAPException;
 import java.util.Set;
 
 import javax.enterprise.context.spi.CreationalContext;
@@ -18,18 +18,18 @@ public class CDIServiceLocator {
     private CDIServiceLocator() {
     }
 
-    private static BeanManager getBeanManager() throws ClinicumLabException {
+    private static BeanManager getBeanManager() throws SICAPException {
         try {
             InitialContext initialContext = new InitialContext();
             return (BeanManager) initialContext.lookup("java:comp/BeanManager");
         } catch (NamingException e) {
             LOGGER.error(e);
-            throw new ClinicumLabException("Não pôde encontrar BeanManager no JNDI.");
+            throw new SICAPException("Não pôde encontrar BeanManager no JNDI.");
         }
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T getBean(Class<T> clazz) throws ClinicumLabException {
+    public static <T> T getBean(Class<T> clazz) throws SICAPException {
         BeanManager bm = getBeanManager();
         Set<Bean<?>> beans = (Set<Bean<?>>) bm.getBeans(clazz);
 

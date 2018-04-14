@@ -1,10 +1,8 @@
 package br.org.sicap.servicos;
 
 import br.org.sicap.repository.Professores;
-import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Professor;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -21,20 +19,21 @@ public class ProfessorServico implements Serializable {
     @Inject
     private Professores professores;
 
-    public ProfessorServico() {
-    }
+    @Inject
+    private PessoaServico pessoaServico;
 
     @Transactional
     public void salvar(Professor professor) {
-        if (professor.getId() == null) {
+        if (novoCadastro(professor)) {
             professor.setCadastro(new Date());
-            professor.setMatricula(matricula(professor));
+            professor.setMatricula(geraMatricula(professor));
+            professor.setCategoria("professor");
         }
         this.professores.save(professor);
     }
 
     @Transactional
-    public void deletar(Professor professor) throws ClinicumLabException {
+    public void deletar(Professor professor) {
         professores.delete(findById(professor.getId()));
     }
 
@@ -47,18 +46,23 @@ public class ProfessorServico implements Serializable {
     }
 
     /**
-     * Responsável por conter a lógica de geração do número da matrícula do professor
+     * Gera a matrícula do professor
+     *
      * @param professor
-     * @return 
+     * @return
      */
-    public String matricula(Professor professor){
-        String matricula;
-        LocalDate agora = LocalDate.now();
-        int ano = agora.getYear();
-        String cpf = professor.getCpf().replaceAll("\\.", "").replaceAll("\\-", "");
-        matricula = ano + cpf;
-        
-        return matricula;
+    public String geraMatricula(Professor professor) {
+        return pessoaServico.geraMatricula(Professor.class, professor.getCpf());
     }
-    
+
+    /**
+     * Verifica se o ID do aluno já existe, indicando se é um novo cadastro.
+     *
+     * @param professor
+     * @return
+     */
+    public boolean novoCadastro(Professor professor) {
+        return pessoaServico.novoCadastro(professor);
+    }
+
 }

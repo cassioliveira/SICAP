@@ -1,7 +1,6 @@
 package br.org.sicap.controladores;
 
 import br.org.sicap.enumerations.Formacao;
-import br.org.sicap.excecoes.ClinicumLabException;
 import br.org.sicap.modelo.Professor;
 import br.org.sicap.servicos.ProfessorServico;
 import br.org.sicap.util.jsf.FacesUtil;
@@ -28,7 +27,6 @@ public class ProfessorController implements Serializable {
 
     @Getter
     @Setter
-    @Inject
     private Professor professor;
 
     @Getter
@@ -38,7 +36,6 @@ public class ProfessorController implements Serializable {
 
     @Getter
     @Setter
-    @Inject
     private Professor professorSelecionado;
 
     @Getter
@@ -47,10 +44,9 @@ public class ProfessorController implements Serializable {
     @Getter
     private List<Professor> professores;
 
-    /**
-     * Construtor da classe
-     */
     public ProfessorController() {
+        professor = new Professor();
+        professorSelecionado = new Professor();
     }
 
     @PostConstruct
@@ -67,7 +63,7 @@ public class ProfessorController implements Serializable {
     public void salvar() {
         professorServico.salvar(professor);
         if (getEditando()) {
-            FacesUtil.mensagemSucesso("Cadastro de '" + professor.getNome() + "' atualizado com sucesso!");
+            FacesUtil.mensagemSucesso("Cadastro de '" + professor.getNome()+ "' atualizado com sucesso!");
         } else {
             FacesUtil.mensagemSucesso("Cadastro efetuado com sucesso!");
         }
@@ -79,9 +75,8 @@ public class ProfessorController implements Serializable {
      * Método responsável por excluir um objeto do tipo Professor e exibir ao
      * final do processo uma mensagem informativa.
      *
-     * @throws ClinicumLabException
      */
-    public void excluir() throws ClinicumLabException {
+    public void excluir() {
         this.professorServico.deletar(professorSelecionado);
         this.professores = professorServico.findAll();
         FacesUtil.mensagemSucesso("Exclusão efetuada com sucesso!");
